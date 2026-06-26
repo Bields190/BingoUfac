@@ -1,0 +1,329 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+/* Cores das pedras */
+.pedra-b {
+    --cor-principal: #ef3340;
+    --cor-secundaria: #c9182b;
+    --cor-sombra: #8f1020;
+}
+
+.pedra-i {
+    --cor-principal: #ff8500;
+    --cor-secundaria: #e46f00;
+    --cor-sombra: #a94f00;
+}
+
+.pedra-n {
+    --cor-principal: #2a9d8f;
+    --cor-secundaria: #16877a;
+    --cor-sombra: #0f5f56;
+}
+
+.pedra-g {
+    --cor-principal: #457b9d;
+    --cor-secundaria: #2f6385;
+    --cor-sombra: #21475f;
+}
+
+.pedra-o {
+    --cor-principal: #7209b7;
+    --cor-secundaria: #560bad;
+    --cor-sombra: #3a0578;
+}
+
+.pedra-indefinida {
+    --cor-principal: #e9ecef;
+    --cor-secundaria: #adb5bd;
+    --cor-sombra: #6c757d;
+}
+
+/* Layout principal */
+.container-sorteio {
+    width: 96vw;
+    height: 92vh;
+
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 28px;
+
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* As duas sections com mesma altura */
+.card-pedra-sorteada,
+.historico-pedras {
+    height: 100%;
+    background: #ffffff;
+    border-radius: 34px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* Card da pedra sorteada */
+.card-pedra-sorteada {
+    padding: 44px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 34px;
+}
+
+.titulo-sorteio {
+    font-size: clamp(54px, 4.6vw, 82px);
+    color: #1e3c72;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+}
+
+.pedra-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.label-pedra.atual {
+    font-size: clamp(36px, 2.8vw, 52px);
+    font-weight: bold;
+    color: #1e3c72;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Bola principal */
+.pedra-sorteada {
+    width: clamp(390px, 25vw, 520px);
+    height: clamp(390px, 25vw, 520px);
+
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cor-principal), var(--cor-secundaria));
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    border: 10px solid #ffffff;
+    box-shadow:
+        0 17px 0 var(--cor-sombra),
+        0 28px 45px rgba(0, 0, 0, 0.38);
+
+    animation: aparecerPedra 0.5s ease;
+}
+
+.conteudo-pedra {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 22px;
+}
+
+.letra-pedra {
+    font-size: clamp(90px, 6.5vw, 140px);
+    font-weight: bold;
+    line-height: 1;
+    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.numero-pedra {
+    font-size: clamp(145px, 10vw, 220px);
+    font-weight: bold;
+    line-height: 1;
+    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25);
+}
+
+.texto-ajuda {
+    font-size: clamp(28px, 2vw, 38px);
+    color: #444;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Card lateral do histórico */
+.historico-pedras {
+    padding: 26px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tabela lateral */
+.tabela-bingo {
+    width: 100%;
+    height: 100%;
+
+    border-spacing: 10px 12px;
+}
+
+/* Cabeçalho B I N G O */
+.cabecalho-bingo {
+    width: clamp(62px, 4vw, 82px);
+    height: clamp(58px, 4vw, 76px);
+
+    color: white;
+    font-size: clamp(34px, 2.5vw, 48px);
+    font-weight: bold;
+
+    border-radius: 14px;
+    text-align: center;
+
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.coluna-b {
+    background: #ef3340;
+}
+
+.coluna-i {
+    background: #ff8500;
+}
+
+.coluna-n {
+    background: #2a9d8f;
+}
+
+.coluna-g {
+    background: #457b9d;
+}
+
+.coluna-o {
+    background: #7209b7;
+}
+
+.celula-bingo {
+    text-align: center;
+    padding: 2px;
+    white-space: nowrap;
+}
+
+/* Números da tabela */
+.historico-pedras .numero-bingo {
+    width: clamp(52px, 3vw, 66px);
+    height: clamp(44px, 2.7vw, 56px);
+    margin: 3px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px;
+
+    background: #f1f3f5;
+    color: #111;
+
+    font-size: clamp(22px, 1.5vw, 30px);
+    font-weight: bold;
+
+    box-shadow: 0 4px 0 #c9c9c9;
+}
+
+/* Impede que os spans sejam clicáveis */
+.numero-historico {
+    pointer-events: none;
+    user-select: none;
+    cursor: default;
+}
+
+/* Número já sorteado */
+.historico-pedras .numero-bingo.sorteado {
+    background: linear-gradient(135deg, #06d6a0, #038f6b);
+    color: white;
+    box-shadow: 0 4px 0 #02664d;
+}
+
+/* Número atual */
+.historico-pedras .numero-bingo.atual {
+    background: linear-gradient(135deg, #ef3340, #c9182b);
+    color: white;
+    box-shadow: 0 4px 0 #8f1020;
+    animation: destaque 0.8s infinite alternate;
+}
+
+/* Animações */
+@keyframes aparecerPedra {
+    from {
+        transform: scale(0.75);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes destaque {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
+}
+
+/* Telas menores */
+@media (max-width: 1200px) {
+    body {
+        overflow: auto;
+    }
+
+    .container-sorteio {
+        width: 94vw;
+        height: auto;
+        min-height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        padding: 24px 0;
+    }
+
+    .card-pedra-sorteada,
+    .historico-pedras {
+        width: 100%;
+        height: auto;
+    }
+
+    .historico-pedras {
+        overflow-x: auto;
+    }
+
+    .pedra-sorteada {
+        width: 300px;
+        height: 300px;
+    }
+
+    .titulo-sorteio {
+        font-size: 42px;
+    }
+
+    .numero-pedra {
+        font-size: 110px;
+    }
+
+    .letra-pedra {
+        font-size: 70px;
+    }
+}
