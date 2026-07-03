@@ -6,44 +6,46 @@
 
 body {
     width: 100vw;
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-
+    height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    /* Fundo amadeirado / palha sutil, clean e minimalista */
+    background: #fdf7ee;
+    background-image: radial-gradient(#ebe1cd 1.5px, transparent 1.5px);
+    background-size: 20px 20px;
+    
     display: flex;
     justify-content: center;
     align-items: center;
-
     overflow: hidden;
 }
 
-/* Cores das pedras */
+/* Cores dinâmicas para a pedra atual */
 .pedra-b {
-    --cor-principal: #ef3340;
+    --cor-principal: #ef3340; /* Vermelho Bandeirinha */
     --cor-secundaria: #c9182b;
     --cor-sombra: #8f1020;
 }
 
 .pedra-i {
-    --cor-principal: #ff8500;
+    --cor-principal: #ff8500; /* Laranja */
     --cor-secundaria: #e46f00;
     --cor-sombra: #a94f00;
 }
 
 .pedra-n {
-    --cor-principal: #2a9d8f;
-    --cor-secundaria: #16877a;
-    --cor-sombra: #0f5f56;
+    --cor-principal: #00b4d8; /* Azul Turquesa do Logo */
+    --cor-secundaria: #0077b6;
+    --cor-sombra: #03045e;
 }
 
 .pedra-g {
-    --cor-principal: #457b9d;
-    --cor-secundaria: #2f6385;
-    --cor-sombra: #21475f;
+    --cor-principal: #ffb703; /* Amarelo Milho */
+    --cor-secundaria: #fb8500;
+    --cor-sombra: #d46a00;
 }
 
 .pedra-o {
-    --cor-principal: #7209b7;
+    --cor-principal: #7209b7; /* Roxo Junino */
     --cor-secundaria: #560bad;
     --cor-sombra: #3a0578;
 }
@@ -54,276 +56,191 @@ body {
     --cor-sombra: #6c757d;
 }
 
-/* Layout principal */
+/* Layout dividido horizontalmente para o espaço 768x512 */
 .container-sorteio {
-    width: 96vw;
-    height: 92vh;
-
-    display: grid;
-    grid-template-columns: 1.55fr 1fr;
-    gap: 28px;
-
-    justify-content: center;
-    align-items: stretch;
+    width: 768px;
+    height: 512px;
+    display: flex;
+    flex-direction: row; /* Coloca lado a lado obrigatoriamente */
+    gap: 16px;
+    padding: 16px;
 }
 
-/* As duas sections com mesma altura */
-.card-pedra-sorteada,
-.historico-pedras {
-    height: 100%;
-    background: #ffffff;
-    border-radius: 34px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
-}
-
-/* Card da pedra sorteada */
+/* ==========================================================
+   1. WIDGET ESQUERDA: PEDRA ATUAL FLUTUANTE
+   ========================================================== */
 .card-pedra-sorteada {
-    padding: 44px;
-
+    width: 230px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(139, 94, 60, 0.12);
+    border: 1px solid rgba(139, 94, 60, 0.05);
+    
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 34px;
+    padding: 24px 16px;
+    text-align: center;
 }
 
 .titulo-sorteio {
-    font-size: clamp(54px, 4.6vw, 82px);
-    color: #1e3c72;
-    text-align: center;
+    font-size: 18px;
+    color: #4a3728;
     text-transform: uppercase;
-    letter-spacing: 7px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    border-bottom: 2px solid #ffb703;
+    padding-bottom: 4px;
 }
 
 .pedra-principal {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
+    gap: 8px;
 }
 
 .label-pedra.atual {
-    font-size: clamp(36px, 2.8vw, 52px);
-    font-weight: bold;
-    color: #1e3c72;
+    font-size: 12px;
+    font-weight: 800;
+    color: #8b5e3c;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
-/* Bola principal */
+/* Efeito 3D flutuante na bola atual */
 .pedra-sorteada {
-    width: clamp(390px, 25vw, 520px);
-    height: clamp(390px, 25vw, 520px);
-
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--cor-principal), var(--cor-secundaria));
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     color: white;
-
-    border: 10px solid #ffffff;
-    box-shadow:
-        0 17px 0 var(--cor-sombra),
-        0 28px 45px rgba(0, 0, 0, 0.38);
-
-    animation: aparecerPedra 0.5s ease;
+    border: 5px solid #ffffff;
+    box-shadow: 
+        0 6px 0 var(--cor-sombra),
+        0 12px 25px rgba(0, 0, 0, 0.18);
+    animation: aparecerPedra 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .conteudo-pedra {
     display: flex;
-    justify-content: center;
     align-items: baseline;
-    gap: 22px;
+    gap: 2px;
 }
 
 .letra-pedra {
-    font-size: clamp(90px, 6.5vw, 140px);
-    font-weight: bold;
-    line-height: 1;
-    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    font-size: 38px;
+    font-weight: 900;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
 }
 
 .numero-pedra {
-    font-size: clamp(145px, 10vw, 220px);
-    font-weight: bold;
-    line-height: 1;
-    text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25);
+    font-size: 56px;
+    font-weight: 900;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
 }
 
 .texto-ajuda {
-    font-size: clamp(28px, 2vw, 38px);
-    color: #444;
-    font-weight: bold;
-    text-align: center;
+    font-size: 11px;
+    color: #a08060;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
-/* Card lateral do histórico */
+/* ==========================================================
+   2. PAINEL DIREITA: BOARD COMPLETO DO BINGO
+   ========================================================== */
 .historico-pedras {
-    padding: 26px;
-
+    flex: 1;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(139, 94, 60, 0.05);
+    border: 1px solid rgba(139, 94, 60, 0.03);
+    padding: 16px;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-/* Tabela lateral */
 .tabela-bingo {
     width: 100%;
     height: 100%;
-
-    border-spacing: 10px 12px;
+    border-spacing: 4px 2px;
+    border-collapse: separate;
 }
 
-/* Cabeçalho B I N G O */
+/* Cabeçalhos B I N G O Corrigidos (Círculos Coloridos) */
 .cabecalho-bingo {
-    width: clamp(62px, 4vw, 82px);
-    height: clamp(58px, 4vw, 76px);
-
-    color: white;
-    font-size: clamp(34px, 2.5vw, 48px);
-    font-weight: bold;
-
-    border-radius: 14px;
+    height: 38px;
+    color: white !important;
+    font-size: 20px;
+    font-weight: 900;
+    border-radius: 12px;
     text-align: center;
-
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
+    vertical-align: middle;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
-.coluna-b {
-    background: #ef3340;
-}
-
-.coluna-i {
-    background: #ff8500;
-}
-
-.coluna-n {
-    background: #2a9d8f;
-}
-
-.coluna-g {
-    background: #457b9d;
-}
-
-.coluna-o {
-    background: #7209b7;
-}
+/* Cores sólidas pros cabeçalhos resolverem o branco no branco */
+.coluna-b { background: #ef3340; }
+.coluna-i { background: #ff8500; }
+.coluna-n { background: #00b4d8; }
+.coluna-g { background: #ffb703; }
+.coluna-o { background: #7209b7; }
 
 .celula-bingo {
     text-align: center;
-    padding: 2px;
-    white-space: nowrap;
+    vertical-align: middle;
 }
 
-/* Números da tabela */
+/* Pedras do Histórico Inteligentes (Preenchem a tela perfeitamente) */
 .historico-pedras .numero-bingo {
-    width: clamp(52px, 3vw, 66px);
-    height: clamp(44px, 2.7vw, 56px);
-    margin: 3px;
-
+    width: 38px;
+    height: 35px;
+    margin: 2px 1px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-
-    border-radius: 12px;
-
-    background: #f1f3f5;
-    color: #111;
-
-    font-size: clamp(22px, 1.5vw, 30px);
-    font-weight: bold;
-
-    box-shadow: 0 4px 0 #c9c9c9;
+    border-radius: 8px;
+    background: #f7f1e3;
+    color: #7d5e46;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 2px 0 #ded2b9;
+    transition: all 0.2s ease;
 }
 
-/* Impede que os spans sejam clicáveis */
 .numero-historico {
     pointer-events: none;
     user-select: none;
-    cursor: default;
 }
 
-/* Número já sorteado */
+/* Estados de ativação das pedras no painel */
 .historico-pedras .numero-bingo.sorteado {
-    background: linear-gradient(135deg, #06d6a0, #038f6b);
+    background: linear-gradient(135deg, #2a9d8f, #16877a);
     color: white;
-    box-shadow: 0 4px 0 #02664d;
+    box-shadow: 0 2px 0 #0f5f56;
 }
 
-/* Número atual */
 .historico-pedras .numero-bingo.atual {
     background: linear-gradient(135deg, #ef3340, #c9182b);
     color: white;
-    box-shadow: 0 4px 0 #8f1020;
-    animation: destaque 0.8s infinite alternate;
+    box-shadow: 0 2px 0 #8f1020;
+    animation: destaque 0.5s infinite alternate;
 }
 
-/* Animações */
+/* Animações Clean */
 @keyframes aparecerPedra {
-    from {
-        transform: scale(0.75);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 @keyframes destaque {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.12);
-    }
-}
-
-/* Telas menores */
-@media (max-width: 1200px) {
-    body {
-        overflow: auto;
-    }
-
-    .container-sorteio {
-        width: 94vw;
-        height: auto;
-        min-height: 100vh;
-
-        display: flex;
-        flex-direction: column;
-        padding: 24px 0;
-    }
-
-    .card-pedra-sorteada,
-    .historico-pedras {
-        width: 100%;
-        height: auto;
-    }
-
-    .historico-pedras {
-        overflow-x: auto;
-    }
-
-    .pedra-sorteada {
-        width: 300px;
-        height: 300px;
-    }
-
-    .titulo-sorteio {
-        font-size: 42px;
-    }
-
-    .numero-pedra {
-        font-size: 110px;
-    }
-
-    .letra-pedra {
-        font-size: 70px;
-    }
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
 }
