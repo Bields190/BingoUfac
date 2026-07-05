@@ -4,151 +4,125 @@
     box-sizing: border-box;
 }
 
-html {
-    min-height: 100%;
-}
-
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    font-family: Arial, Helvetica, sans-serif;
+    background: #fdf6ec;
+    background-image: radial-gradient(#ebe0cc 1.5px, transparent 1.5px);
+    background-size: 20px 20px;
+    font-family: 'Segoe UI', Arial, sans-serif;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-
-    gap: 18px;
-    padding: 22px;
-
+    gap: 20px;
+    padding: 24px;
     overflow-y: auto;
-}
-
-/* Container da tabela */
-.container-bingo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 /* Tabela principal */
 .tabela-bingo {
     background: #ffffff;
-    padding: 22px;
-    border-radius: 26px;
-    border-spacing: 10px;
-    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.38);
+    padding: 20px;
+    border-radius: 24px;
+    border-spacing: 8px;
+    box-shadow: 0 12px 35px rgba(139, 94, 60, 0.1);
+    border: 1px solid rgba(139, 94, 60, 0.05);
 }
 
-/* Cabeçalho B I N G O */
+/* Cabeçalho B I N G O (Círculos do Arraial) */
 .cabecalho-bingo {
-    min-width: 130px;
-    height: 62px;
-
+    min-width: 100px;
+    height: 52px;
     color: white;
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 900;
-
-    padding: 8px 22px;
-    border-radius: 16px;
-
+    border-radius: 14px;
     text-align: center;
-    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.28);
+    vertical-align: middle;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Cores das letras */
-.coluna-b {
-    background: linear-gradient(135deg, #ef3340, #c9182b);
-}
+.coluna-b { background: #ef3340; }
+.coluna-i { background: #ff8500; }
+.coluna-n { background: #00b4d8; }
+.coluna-g { background: #ffb703; }
+.coluna-o { background: #7209b7; }
 
-.coluna-i {
-    background: linear-gradient(135deg, #ff8500, #e46f00);
-}
-
-.coluna-n {
-    background: linear-gradient(135deg, #2a9d8f, #16877a);
-}
-
-.coluna-g {
-    background: linear-gradient(135deg, #457b9d, #2f6385);
-}
-
-.coluna-o {
-    background: linear-gradient(135deg, #7209b7, #560bad);
-}
-
-/* Células */
 .celula-bingo {
     text-align: center;
     padding: 2px;
     white-space: nowrap;
 }
 
-/* Botões dos números */
+/* Botões dos números no painel */
 .numero-bingo {
-    width: 58px;
-    height: 48px;
-    margin: 3px;
-
+    width: 52px;
+    height: 44px;
+    margin: 2px;
     border: none;
-    border-radius: 13px;
-
-    background: #f1f3f5;
-    color: #111;
-
-    font-size: 22px;
-    font-weight: 900;
-
+    border-radius: 10px;
+    background: #f5eedc;
+    color: #6d5440;
+    font-size: 18px;
+    font-weight: 800;
     cursor: pointer;
-
-    box-shadow: 0 4px 0 #c6c6c6;
-    transition: 0.18s ease;
+    box-shadow: 0 3px 0 #ded2b6;
+    transition: all 0.15s ease;
 }
 
 .numero-bingo:hover {
-    background: #ffd166;
-    transform: translateY(-3px);
-    box-shadow: 0 7px 0 #c9a227;
+    background: #ffde82;
+    color: #4a3728;
+    transform: translateY(-2px);
 }
 
 .numero-bingo:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #999;
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #ded2b6;
 }
 
 /* Número já sorteado */
 .numero-bingo.sorteado {
-    background: linear-gradient(135deg, #06d6a0, #038f6b);
+    background: linear-gradient(135deg, #2a9d8f, #16877a);
     color: white;
-    box-shadow: 0 4px 0 #02664d;
+    box-shadow: 0 3px 0 #0f5f56;
 }
 
 /* Último número sorteado */
 .numero-bingo.atual {
     background: linear-gradient(135deg, #ef3340, #c9182b);
     color: white;
-    box-shadow: 0 4px 0 #8f1020;
-    animation: destaqueUltimo 0.75s infinite alternate;
+    box-shadow: 0 3px 0 #8f1020;
+    animation: destaqueUltimo 0.6s infinite alternate;
 }
 
-/* Formulário para digitar pedra */
+/* Painel inferior com formulário e botões */
+.painel-controles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+}
+
 .form-pedra {
     background: #ffffff;
-    padding: 20px 26px;
-    border-radius: 22px;
-
+    padding: 20px 24px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
+    gap: 12px;
+    box-shadow: 0 10px 30px rgba(139, 94, 60, 0.08);
+    border: 1px solid rgba(139, 94, 60, 0.05);
 }
 
 .label-input-pedra {
-    color: #1e3c72;
-    font-size: 20px;
-    font-weight: 900;
+    color: #4a3728;
+    font-size: 16px;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -156,199 +130,91 @@ body {
 .area-input-pedra {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 14px;
+    gap: 12px;
 }
 
 .input-pedra {
-    width: 220px;
-    height: 56px;
-
-    border: 3px solid #1e3c72;
-    border-radius: 15px;
-
-    background: #f8f9fa;
-    color: #1e3c72;
-
+    width: 180px;
+    height: 48px;
+    border: 2px solid #ded2b6;
+    border-radius: 12px;
+    background: #fdfaee;
+    color: #4a3728;
     text-align: center;
-
-    font-size: 24px;
-    font-weight: 900;
-
-    outline: none;
-    transition: 0.2s;
-}
-
-.input-pedra::placeholder {
-    color: #777;
     font-size: 20px;
     font-weight: 800;
+    outline: none;
 }
 
 .input-pedra:focus {
+    border-color: #ff8500;
     background: #ffffff;
-    border-color: #06d6a0;
-    box-shadow: 0 0 0 5px rgba(6, 214, 160, 0.25);
 }
 
-/* Botão marcar */
-.botao-marcar-pedra {
-    height: 56px;
-    padding: 0 30px;
+.botoes-form {
+    display: flex;
+    gap: 8px;
+}
 
+.botao-acao {
+    height: 48px;
+    padding: 0 20px;
     border: none;
-    border-radius: 15px;
-
-    background: linear-gradient(135deg, #06d6a0, #038f6b);
-    color: white;
-
-    font-size: 19px;
-    font-weight: 900;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
-
     cursor: pointer;
-
-    box-shadow: 0 5px 0 #02664d;
-    transition: 0.18s ease;
+    transition: 0.15s ease;
 }
 
-.botao-marcar-pedra:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 0 #02664d;
-    filter: brightness(1.05);
+.botao-marcar {
+    background: #2a9d8f;
+    color: white;
+    box-shadow: 0 4px 0 #16877a;
+}
+.botao-marcar:hover { background: #32b3a3; transform: translateY(-2px); }
+
+.botao-excluir {
+    background: #e76f51;
+    color: white;
+    box-shadow: 0 4px 0 #c45135;
+}
+.botao-excluir:hover { background: #f08266; transform: translateY(-2px); }
+
+.area-botoes-gerais {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
 }
 
-.botao-marcar-pedra:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #02664d;
+.botao-geral {
+    height: 48px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.15s ease;
 }
 
-/* Botão limpar */
+.botao-desfazer {
+    background: #ffb703;
+    color: #4a3728;
+    box-shadow: 0 4px 0 #d46a00;
+}
+.botao-desfazer:hover { background: #ffc42e; transform: translateY(-2px); }
+
 .botao-limpar {
-    min-width: 360px;
-    height: 60px;
-
-    padding: 0 36px;
-
-    border: none;
-    border-radius: 18px;
-
-    background: linear-gradient(135deg, #ef3340, #c9182b);
+    background: #ef3340;
     color: white;
-
-    font-size: 19px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    box-shadow: 0 6px 0 #8f1020;
-    transition: 0.18s ease;
+    box-shadow: 0 4px 0 #8f1020;
 }
+.botao-limpar:hover { background: #f54e59; transform: translateY(-2px); }
 
-.botao-limpar:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 9px 0 #8f1020;
-    filter: brightness(1.08);
-}
-
-.botao-limpar:active {
-    transform: translateY(2px);
-    box-shadow: 0 3px 0 #8f1020;
-}
-
-/* Animação do último número */
 @keyframes destaqueUltimo {
-    from {
-        transform: scale(1);
-        filter: brightness(1);
-    }
-
-    to {
-        transform: scale(1.12);
-        filter: brightness(1.18);
-    }
-}
-
-/* Ajuste para telas com pouca altura */
-@media (max-height: 850px) {
-    body {
-        gap: 14px;
-        padding: 16px;
-    }
-
-    .tabela-bingo {
-        padding: 18px;
-        border-spacing: 8px;
-    }
-
-    .cabecalho-bingo {
-        min-width: 120px;
-        height: 54px;
-        font-size: 36px;
-        padding: 6px 18px;
-    }
-
-    .numero-bingo {
-        width: 54px;
-        height: 44px;
-        font-size: 20px;
-        margin: 2px;
-    }
-
-    .form-pedra {
-        padding: 16px 24px;
-        gap: 10px;
-    }
-
-    .input-pedra,
-    .botao-marcar-pedra {
-        height: 52px;
-    }
-
-    .botao-limpar {
-        height: 56px;
-    }
-}
-
-/* Responsividade para telas estreitas */
-@media (max-width: 900px) {
-    body {
-        padding: 14px;
-    }
-
-    .tabela-bingo {
-        padding: 14px;
-        border-spacing: 6px;
-    }
-
-    .cabecalho-bingo {
-        min-width: auto;
-        font-size: 30px;
-        padding: 8px 14px;
-    }
-
-    .numero-bingo {
-        width: 46px;
-        height: 40px;
-        font-size: 17px;
-    }
-
-    .area-input-pedra {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .input-pedra,
-    .botao-marcar-pedra {
-        width: 100%;
-    }
-
-    .botao-limpar {
-        min-width: 260px;
-        font-size: 15px;
-        padding: 0 24px;
-    }
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
 }

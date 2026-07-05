@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bingo</title>
-
+    <title>Painel de Controle - Bingo Arraial</title>
     <link rel="stylesheet" href="bingo_painel.css">
 </head>
 
@@ -14,7 +13,6 @@
     <main class="container-bingo">
 
         <table class="tabela-bingo">
-
             <thead>
                 <tr>
                     <th class="cabecalho-bingo coluna-b">B</th>
@@ -205,30 +203,39 @@
                     </td>
                 </tr>
             </tbody>
-
         </table>
 
     </main>
 
-    <form class="form-pedra" id="formPedra">
-        <label class="label-input-pedra" for="inputPedra">
-            Digitar pedra
-        </label>
+    <div class="painel-controles">
+        <form class="form-pedra" id="formPedra">
+            <label class="label-input-pedra" for="inputPedra">
+                Gerenciar Pedra
+            </label>
 
-        <div class="area-input-pedra">
-            <input type="text" id="inputPedra" class="input-pedra" placeholder="Ex: 05 ou G50" autocomplete="off">
+            <div class="area-input-pedra">
+                <input type="text" id="inputPedra" class="input-pedra" placeholder="Ex: 05 ou G50" autocomplete="off">
 
-            <button type="submit" class="botao-marcar-pedra">
-                Marcar
+                <div class="botoes-form">
+                    <button type="submit" class="botao-acao botao-marcar">
+                        Marcar
+                    </button>
+                    <button type="button" class="botao-acao botao-excluir" id="btnExcluirDigitado">
+                        Excluir
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="area-botoes-gerais">
+            <button class="botao-geral botao-desfazer" id="btnDesfazer">
+                ↩ Desfazer Última
+            </button>
+            <button class="botao-geral botao-limpar" id="btnLimparSorteados">
+                🗑️ Limpar Tudo
             </button>
         </div>
-    </form>
-
-    <button class="botao-limpar" id="btnLimparSorteados">
-        Limpar números sorteados
-    </button>
-
-
+    </div>
 
     <script src="bingo.js"></script>
 </body>
